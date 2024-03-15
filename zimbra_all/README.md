@@ -14,5 +14,5 @@ $ docker pull rockylinux/rockylinux:8.9-minimal
 
 ##### Build Zimbra a new docker image
 ```bash
-$ docker build --rm -t iwayvietnam/zimbra_all .
+$ docker build --rm -t platformlibre/zimbra_all .
 ```
