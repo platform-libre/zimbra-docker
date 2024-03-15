@@ -38,20 +38,20 @@ RANDOMVIRUS=$(date +%s|sha256sum|base64|head -c 10)
 
 # Add Zimbra 9 RPM repo
 cat > /etc/yum.repos.d/zimbra.repo <<EOF
-[zimbra-90-oss]
-name=Zimbra New RPM Repository
-baseurl=https://repo.zimbra.com/rpm/90/rhel8
+[zimbra-1000-oss]
+name=Zimbra OSS RPM Repository
+baseurl=https://repo.zimbra.com/rpm/1000/rhel8
 gpgcheck=1
 enabled=1
 EOF
 rpm --import https://files.zimbra.com/downloads/security/public.key 2>&1
 
 ##Install the Zimbra Collaboration ##
-#echo "Downloading Zimbra 9 built by Zextras"
-#wget -O zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz https://download.zextras.com/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
+#echo "Downloading Zimbra 10 built by Platform Libre"
+wget -O zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz http://zm-ose-build.platformlibre.com:8008/RHEL8_64-DAFFODIL-1006-20240315044748-FOSS-0124/zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz
 
 echo "Extracting files from the archive"
-tar xzvf /opt/zimbra-install/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz -C /opt/zimbra-install/
+tar xzvf /opt/zimbra-install/zzcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz -C /opt/zimbra-install/
 
 echo "Installing Zimbra Collaboration just the Software"
 cd /opt/zimbra-install/zimbra-installer
@@ -94,7 +94,7 @@ ldap_url="ldap://$HOSTNAME.$DOMAIN:389"
 ssl_default_digest="sha256"
 zimbraDefaultDomainName="$DOMAIN"
 zimbraIPMode="ipv4"
-zimbraPrefTimeZoneId="Asia/Ho_Chi_Minh"
+zimbraPrefTimeZoneId="Asia/Colombo"
 zimbraVersionCheckNotificationEmail="admin@$DOMAIN"
 zimbraVersionCheckNotificationEmailFrom="admin@$DOMAIN"
 zimbraVersionCheckSendNotifications="FALSE"
@@ -132,7 +132,7 @@ ldap_url="ldap://LDAPHOST:389"
 ssl_default_digest="sha256"
 zimbraDefaultDomainName="$DOMAIN"
 zimbraIPMode="ipv4"
-zimbraPrefTimeZoneId="Asia/Ho_Chi_Minh"
+zimbraPrefTimeZoneId="Asia/Colombo"
 zimbraVersionCheckNotificationEmail="admin@$DOMAIN"
 zimbraVersionCheckNotificationEmailFrom="admin@$DOMAIN"
 zimbraVersionCheckSendNotifications="FALSE"
@@ -190,14 +190,14 @@ postfix_mail_owner="postfix"
 postfix_setgid_group="postdrop"
 ssl_default_digest="sha256"
 av_notify_user="admin@$DOMAIN"
-zimbraDNSMasterIP="8.8.8.8"
+zimbraDNSMasterIP="10.100.10.21"
 zimbraDNSTCPUpstream="no"
 zimbraDNSUseTCP="yes"
 zimbraDNSUseUDP="yes"
 zimbraDefaultDomainName="$DOMAIN"
 zimbraIPMode="ipv4"
 zimbraMtaMyNetworks="127.0.0.0/8 $CONTAINERIP/32 [::1]/128 [fe80::]/64"
-zimbraPrefTimeZoneId="Asia/Ho_Chi_Minh"
+zimbraPrefTimeZoneId="Asia/Colombo"
 zimbraVersionCheckNotificationEmail="admin@$DOMAIN"
 zimbraVersionCheckNotificationEmailFrom="admin@$DOMAIN"
 zimbraVersionCheckSendNotifications="FALSE"
@@ -262,7 +262,7 @@ ssl_default_digest="sha256"
 zimbraDefaultDomainName="$DOMAIN"
 zimbraIPMode="ipv4"
 zimbraMailProxy="TRUE"
-zimbraPrefTimeZoneId="Asia/Ho_Chi_Minh"
+zimbraPrefTimeZoneId="Asia/Colombo"
 zimbraReverseProxyLookupTarget="TRUE"
 zimbraVersionCheckNotificationEmail="admin@$DOMAIN"
 zimbraVersionCheckNotificationEmailFrom="admin@$DOMAIN"
@@ -278,7 +278,7 @@ elif [ $INSTALLED-SERVICES = "MAILSTORE" ]
 then
   ./install.sh -s --platform-override < /opt/zimbra-install/install-autoKeys-mailstore
   cat <<EOF >/opt/zimbra-install/installParameters
-AVDOMAIN="$DOMAIN"
+AVDOMAIN="$DOMAIN"240315044748-FOSS-0124
 AVUSER="admin@$DOMAIN"
 CREATEADMIN="admin@$DOMAIN"
 CREATEADMINPASS="$PASSWORD"
@@ -288,7 +288,7 @@ DOCREATEDOMAIN="no"
 EXPANDMENU="no"
 HOSTNAME="$HOSTNAME.$DOMAIN"
 HTTPPORT="8080"
-HTTPPROXY="TRUE"
+HTTPPROXY="TRUE"240315044748-FOSS-0124
 HTTPPROXYPORT="80"
 HTTPSPORT="8443"
 HTTPSPROXYPORT="443"
@@ -343,7 +343,7 @@ ldap_nginx_password="$PASSWORD"
 ldap_url="ldap://$LDAPHOST:389"
 mailboxd_directory="/opt/zimbra/mailboxd"
 mailboxd_keystore="/opt/zimbra/mailboxd/etc/keystore"
-mailboxd_keystore_password="$PASSWORD"
+mailboxd_keystore_password="$PASSWORD"240315044748-FOSS-0124
 mailboxd_server="jetty"
 mailboxd_truststore="/opt/zimbra/common/lib/jvm/java/lib/security/cacerts"
 mailboxd_truststore_password="changeit"
@@ -353,7 +353,7 @@ zimbraFeatureBriefcasesEnabled="Enabled"
 zimbraFeatureTasksEnabled="Enabled"
 zimbraIPMode="ipv4"
 zimbraMailProxy="TRUE"
-zimbraPrefTimeZoneId="Asia/Ho_Chi_Minh"
+zimbraPrefTimeZoneId="Asia/Colomno"
 zimbraReverseProxyLookupTarget="TRUE"
 zimbraVersionCheckNotificationEmail="admin@$DOMAIN"
 zimbraVersionCheckNotificationEmailFrom="admin@$DOMAIN"
