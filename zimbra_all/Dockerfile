@@ -18,7 +18,7 @@
 # Dockerfile to build Zimbra 10 (built by Platform Libre) container images
 # Based on Rocky Linux 8
 #################################################################
-FROM rockylinux:8.9-minimal
+FROM rockylinux/rockylinux:8.9-minimal
 MAINTAINER Chinthaka Deshapriya <ceeedevops@gmail.com>
 
 RUN yum -y update && yum -y install \
