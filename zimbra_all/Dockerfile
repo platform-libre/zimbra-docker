@@ -21,7 +21,7 @@
 FROM rockylinux/rockylinux:8.9-minimal
 MAINTAINER Chinthaka Deshapriya <ceeedevops@gmail.com>
 
-RUN yum -y update && yum -y install \
+RUN dnf -y update && dnf -y install \
   perl \
   glibc-langpack-en \
   net-tools \
