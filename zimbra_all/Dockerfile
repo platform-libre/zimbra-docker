@@ -1,5 +1,5 @@
 #<one line to give the program's name and a brief idea of what it does.>
-#    Copyright (C) 2021 iWayVietnam
+#    Copyright (C) 2024 Platform Libre
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -15,11 +15,11 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #################################################################
-# Dockerfile to build Zimbra 9 (built by Zextras) container images
+# Dockerfile to build Zimbra 10 (built by Platform Libre) container images
 # Based on Rocky Linux 8
 #################################################################
-FROM rockylinux/rockylinux
-MAINTAINER Truong Anh Tuan <tatuan@gmail.com>
+FROM rockylinux:8.9-minimal
+MAINTAINER Chinthaka Deshapriya <ceeedevops@gmail.com>
 
 RUN yum -y update && yum -y install \
   perl \
@@ -32,7 +32,7 @@ RUN yum -y update && yum -y install \
   which \
   wget
 
-RUN ln -s -f /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+RUN ln -s -f /usr/share/zoneinfo/Asia/Colombo /etc/localtime
 
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
