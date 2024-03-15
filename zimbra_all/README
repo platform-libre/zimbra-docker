@@ -8,7 +8,7 @@ $ docker pull rockylinux/rockylinux:8.9-minimal
 ```
 ##### Checkout this git repo
 ```bash
-* $ git clone https://github.com/iwayvietnam/zimbra-docker.git && cd zimbra-docker/zimbra_all
+* $ git clone https://github.com/platform-libre/zimbra-docker.git && cd zimbra-docker/zimbra_all
 ```
 ##### Download the latest Zimbra 9 (built by Zextras)
 ```bash
