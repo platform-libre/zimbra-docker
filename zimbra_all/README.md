@@ -4,7 +4,7 @@ See: https://docs.docker.com/engine/install/
 
 ##### Pull the latest Rocky Linux based docker image
 ```bash
-$ docker pull rockylinux/rockylinux:8.9-minimal
+$ docker pull rockylinux/rockylinux:8
 ```
 ##### Checkout this git repo
 
