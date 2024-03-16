@@ -30,6 +30,7 @@ RUN dnf -y update && dnf -y install \
   rsyslog \
   nmap-ncat \
   which \
+  iproute \
   wget
 
 RUN ln -s -f /usr/share/zoneinfo/Asia/Colombo /etc/localtime
