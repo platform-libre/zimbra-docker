@@ -20,13 +20,13 @@
 if [ -e /opt/zimbra-install/install-autoKeys ]
 then ## Zimbra NOT installed yet.
 
-cp /etc/rsyslog.conf /etc/rsyslog.conf.bak
-sed -i 's|SysSock.Use="off")|SysSock.Use="on")|g' /etc/rsyslog.conf
-sed -i 's|module(load="imjournal"|#module(load="imjournal"|g' /etc/rsyslog.conf
-sed -i 's|StateFile="imjournal.state"|#StateFile="imjournal.state"|g' /etc/rsyslog.conf
-sed -i 's|*.info;mail.none;authpriv.none;cron.none|*.info;local0.none;local1.none;mail.none;auth.none;authpriv.none;cron.none|g' /etc/rsyslog.conf
-echo -e "\nlocal0.*                -/var/log/zimbra.log\nlocal1.*                -/var/log/zimbra-stats.log\nauth.*                  -/var/log/zimbra.log\nmail.*                -/var/log/zimbra.log" >> /etc/rsyslog.conf
-rsyslogd
+# cp /etc/rsyslog.conf /etc/rsyslog.conf.bak
+# sed -i 's|SysSock.Use="off")|SysSock.Use="on")|g' /etc/rsyslog.conf
+# sed -i 's|module(load="imjournal"|#module(load="imjournal"|g' /etc/rsyslog.conf
+# sed -i 's|StateFile="imjournal.state"|#StateFile="imjournal.state"|g' /etc/rsyslog.conf
+# sed -i 's|*.info;mail.none;authpriv.none;cron.none|*.info;local0.none;local1.none;mail.none;auth.none;authpriv.none;cron.none|g' /etc/rsyslog.conf
+# echo -e "\nlocal0.*                -/var/log/zimbra.log\nlocal1.*                -/var/log/zimbra-stats.log\nauth.*                  -/var/log/zimbra.log\nmail.*                -/var/log/zimbra.log" >> /etc/rsyslog.conf
+# rsyslogd
 
 ## Preparing all the variables like IP, Hostname, etc, all of them from the container
 HOSTNAME=$(hostname -a)
@@ -48,7 +48,7 @@ rpm --import https://files.zimbra.com/downloads/security/public.key 2>&1
 
 ##Install the Zimbra Collaboration ##
 #echo "Downloading Zimbra 10 built by Platform Libre"
-wget -O zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz http://zm-ose-build.platformlibre.com:8008/RHEL8_64-DAFFODIL-1006-20240315044748-FOSS-0124/zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz
+# wget -O zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz http://zm-ose-build.platformlibre.com:8008/RHEL8_64-DAFFODIL-1006-20240315044748-FOSS-0124/zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz
 
 echo "Extracting files from the archive"
 tar xzvf /opt/zimbra-install/zzcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz -C /opt/zimbra-install/
