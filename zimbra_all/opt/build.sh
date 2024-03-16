@@ -50,11 +50,11 @@ rpm --import https://files.zimbra.com/downloads/security/public.key 2>&1
 #echo "Downloading Zimbra 10 built by Platform Libre"
 # wget -O zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz http://zm-ose-build.platformlibre.com:8008/RHEL8_64-DAFFODIL-1006-20240315044748-FOSS-0124/zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz
 
-echo "Extracting files from the archive"
-tar xzvf /opt/zimbra-install/zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz -C /opt/zimbra-install/
+#echo "Extracting files from the archive"
+# tar xzvf /opt/zimbra-install/zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz -C /opt/zimbra-install/
 
 echo "Installing Zimbra Collaboration just the Software"
-cd /opt/zimbra-install/zcs*
+cd /opt/zimbra-install/zimbra-install
 
 if [ $INSTALLED-SERVICES = "LDAP" ]
 then
