@@ -11,7 +11,12 @@ $ docker pull rockylinux/rockylinux:8
 ```bash
 * $ git clone https://github.com/platform-libre/zimbra-docker.git && cd zimbra-docker/zimbra_all
 ```
+##### Download the latest Zimbra 10 (built by Platform Libre)
 
+```bash
+$ wget -O opt/zimbra-install/zcs-10.0.6_GA_0124.RHEL8-platformlibre.tgz \
+https://download.platformlibre.com/zcs-10.0.6_GA_0124.RHEL8-platformlibre.tgz 
+```
 ##### Build Zimbra a new docker image
 ```bash
 $ docker build --rm -t platformlibre/zimbra_all .
