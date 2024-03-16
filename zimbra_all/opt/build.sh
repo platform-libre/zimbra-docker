@@ -52,6 +52,7 @@ rpm --import https://files.zimbra.com/downloads/security/public.key 2>&1
 
 echo "Extracting files from the archive"
 tar xzvf /opt/zimbra-install/zcs-10.0.6_GA_0124.RHEL8_64.20240315044748.tgz -C /opt/zimbra-install/
+mv /opt/zimbra-install/zcs* /opt/zimbra-install/zimbra-install
 
 echo "Installing Zimbra Collaboration just the Software"
 cd /opt/zimbra-install/zimbra-installer
