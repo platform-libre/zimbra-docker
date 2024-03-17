@@ -31,6 +31,7 @@ RUN dnf -y update && dnf -y install \
   nmap-ncat \
   which \
   iproute \
+  procps-ng \
   wget
 
 RUN ln -s -f /usr/share/zoneinfo/Asia/Colombo /etc/localtime
