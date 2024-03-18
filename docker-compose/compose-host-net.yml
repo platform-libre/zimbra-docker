@@ -17,46 +17,24 @@ version: '3.2'
 services:
   dns-server:
     image: 4km3/dnsmasq
-    container_name: dnsmasq-server
+    container_name: dns-server
     restart: always
-    ports:
-      - '53:53/tcp'
-      - '53:53/udp'
     cap_add:
       - NET_ADMIN
-    command: --address=/platformlibre.com/10.0.0.2 --domain=platformlibre.com --mx-host=platformlibre.com,mail.platformlibre.com,0
+    command: --address=/platformlibre.com/10.100.10.108 --domain=platformlibre.com --mx-host=platformlibre.com,mail.platformlibre.com,0
     networks:
-      zcsbr0:
-        ipv4_address: 10.0.0.2
+      - host
   zimbra_all:
       image: platformlibre/zimbra_all
-      container_name: zimbra-platformlibre
+      container_name: zimbra-server
       hostname: mail.platformlibre.com
-      ports:
-        - '25:25'
-        - '80:80'
-        - '465:465'
-        - '587:587'
-        - '110:110'
-        - '143:143'
-        - '993:993'
-        - '995:995'
-        - '443:443'
-        - '3443:3443'
-        - '7071:7071'
+      cap_add:
+        - NET_ADMIN
       dns:
-        - 10.0.0.2
+        - 127.0.0.1
       volumes:
         - './zimbra-storage:/opt/zimbra:rw'
       environment:
         - PASSWORD=M1h1ntal3
-        #- LOGSTASH_IP=192.168.100.252 #if you want to push logs to Logstash (optional)
       networks:
-        zcsbr0:
-          ipv4_address: 10.0.0.3
-networks:
-  zcsbr0:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.0.0.0/24
+        - host
