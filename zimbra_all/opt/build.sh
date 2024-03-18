@@ -29,7 +29,7 @@ then ## Zimbra NOT installed yet.
 # rsyslogd
 
 ## Preparing all the variables like IP, Hostname, etc, all of them from the container
-HOSTNAME=$(hostname -a)
+HOSTNAME=$(hostname -s)
 DOMAIN=$(hostname -d)
 CONTAINERIP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 RANDOMHAM=$(date +%s|sha256sum|base64|head -c 10)
