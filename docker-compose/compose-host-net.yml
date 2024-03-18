@@ -38,3 +38,7 @@ services:
         - PASSWORD=M1h1ntal3
       networks:
         - host
+
+networks:
+  host:
+    external: true
