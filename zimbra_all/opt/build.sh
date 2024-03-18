@@ -343,6 +343,7 @@ ldap_nginx_password="$PASSWORD"
 ldap_url="ldap://$LDAPHOST:389"
 mailboxd_directory="/opt/zimbra/mailboxd"
 mailboxd_keystore="/opt/zimbra/mailboxd/etc/keystore"
+ubuntu@mail:~/zimbra-docker/docker-compose$ 
 mailboxd_keystore_password="$PASSWORD"
 mailboxd_server="jetty"
 mailboxd_truststore="/opt/zimbra/common/lib/jvm/java/lib/security/cacerts"
@@ -391,12 +392,14 @@ INSTALL_WEBAPPS="service zimlet zimbra zimbraAdmin"
 JAVAHOME="/opt/zimbra/common/lib/jvm/java"
 LDAPAMAVISPASS="$PASSWORD"
 LDAPPOSTPASS="$PASSWORD"
+ubuntu@mail:~/zimbra-docker/docker-compose$ 
 LDAPROOTPASS="$PASSWORD"
 LDAPADMINPASS="$PASSWORD"
 LDAPREPPASS="$PASSWORD"
 LDAPBESSEARCHSET="set"
 LDAPDEFAULTSLOADED="1"
 LDAPHOST="$HOSTNAME.$DOMAIN"
+ubuntu@mail:~/zimbra-docker/docker-compose$ 
 LDAPPORT="389"
 LDAPREPLICATIONTYPE="master"
 LDAPSERVERID="2"
@@ -492,3 +495,23 @@ fi
 if [[ $1 == "-bash" ]]; then
   /bin/bash
 fi
+
+
+echo 
+echo "Installing Zextras Theme..."
+mkdir -p /install/zextras
+cd /install/zextras
+wget  https://github.com/ZeXtras/zextras-theme/archive/master.zip
+sudo dnf install -y unzip
+unzip master.zip
+mv zextras-theme-master zextras
+zip -r zextras.zip zextras
+mv zextras.zip /tmp
+chown zimbra:zimbra /tmp/zextras.zip
+sed -i '/+ZimbraInstalledSkin/d' /opt/zimbra/bin/zmskindeploy
+sed -i 's/harmony/zextras/g' /opt/zimbra/jetty/etc/zimbra.web.xml.in
+sudo -u zimbra /opt/zimbra/bin/zmskindeploy  /tmp/zextras.zip
+sudo -u zimbra /opt/zimbra/bin/zmmailboxdctl restart
+echo "Installing zextras theme is completed"
+
+rm -Rf /install/zextras
