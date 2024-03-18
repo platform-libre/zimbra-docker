@@ -22,7 +22,7 @@ services:
     cap_add:
       - NET_ADMIN
     dns:
-      - 127.0.0.1
+      - 10.100.10.21
     volumes:
       - './zimbra-storage:/opt/zimbra:rw'
     environment:
