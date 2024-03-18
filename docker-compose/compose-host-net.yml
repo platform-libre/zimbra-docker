@@ -22,23 +22,18 @@ services:
     cap_add:
       - NET_ADMIN
     command: --address=/platformlibre.com/10.100.10.108 --domain=platformlibre.com --mx-host=platformlibre.com,mail.platformlibre.com,0
-    networks:
-      - host
+    network_mode: host
+    
   zimbra_all:
-      image: platformlibre/zimbra_all
-      container_name: zimbra-server
-      hostname: mail.platformlibre.com
-      cap_add:
-        - NET_ADMIN
-      dns:
-        - 127.0.0.1
-      volumes:
-        - './zimbra-storage:/opt/zimbra:rw'
-      environment:
-        - PASSWORD=M1h1ntal3
-      networks:
-        - host
-
-networks:
-  host:
-    external: true
+    image: platformlibre/zimbra_all
+    container_name: zimbra-server
+    hostname: mail.platformlibre.com
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - 127.0.0.1
+    volumes:
+      - './zimbra-storage:/opt/zimbra:rw'
+    environment:
+      - PASSWORD=${PASSWORD}
+    network_mode: host
