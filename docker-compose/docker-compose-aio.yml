@@ -21,7 +21,7 @@ services:
     restart: always
     cap_add:
       - NET_ADMIN
-    command: --address=/platformlibre.com/10.100.10.108 --domain=platformlibre.com --mx-host=platformlibre.com,mail.platformlibre.com,0
+    command: --address=/mail.platformlibre.com/10.100.10.108 --domain=platformlibre.com --mx-host=platformlibre.com,mail.platformlibre.com,0
     network_mode: host
     
   zimbra_all:
