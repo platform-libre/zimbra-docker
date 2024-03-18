@@ -1,0 +1,62 @@
+#<one line to give the program's name and a brief idea of what it does.>
+#    Copyright (C) 2021 iWayVietnam  & Copyright (C) 2024 Platform Libre
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>
+version: '3.2'
+services:
+  dns-server:
+    image: 4km3/dnsmasq
+    container_name: dnsmasq-server
+    restart: always
+    ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+    cap_add:
+      - NET_ADMIN
+    command: --address=/platformlibre.com/10.0.0.2 --domain=platformlibre.com --mx-host=platformlibre.com,mail.platformlibre.com,0
+    networks:
+      zcsbr0:
+        ipv4_address: 10.0.0.2
+  zimbra_all:
+      image: platformlibre/zimbra_all
+      container_name: zimbra-platformlibre
+      hostname: mail.platformlibre.com
+      ports:
+        - '25:25'
+        - '80:80'
+        - '465:465'
+        - '587:587'
+        - '110:110'
+        - '143:143'
+        - '993:993'
+        - '995:995'
+        - '443:443'
+        - '3443:3443'
+        - '7071:7071'
+      dns:
+        - 10.0.0.2
+      volumes:
+        - './zimbra-storage:/opt/zimbra:rw'
+      environment:
+        - PASSWORD=M1h1ntal3
+        #- LOGSTASH_IP=192.168.100.252 #if you want to push logs to Logstash (optional)
+      networks:
+        zcsbr0:
+          ipv4_address: 10.0.0.3
+networks:
+  zcsbr0:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.0.0.0/24
